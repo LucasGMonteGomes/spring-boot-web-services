@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_users")
 public class User implements Serializable {
 
     @Id
@@ -17,7 +17,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
-    public User(){
+    public User() {
 
     }
 
