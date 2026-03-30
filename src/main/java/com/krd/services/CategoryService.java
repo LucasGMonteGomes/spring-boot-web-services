@@ -1,7 +1,6 @@
 package com.krd.services;
 
 import com.krd.entities.Category;
-import com.krd.entities.User;
 import com.krd.repositories.CategoryRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
