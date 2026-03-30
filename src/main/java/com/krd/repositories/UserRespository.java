@@ -6,3 +6,4 @@ import com.krd.entities.User;
 public interface UserRespository extends JpaRepository<User, Long> {
 
 }
+
