@@ -1,14 +1,8 @@
 package com.krd.config;
 
-import com.krd.entities.Category;
-import com.krd.entities.Order;
-import com.krd.entities.Product;
-import com.krd.entities.User;
+import com.krd.entities.*;
 import com.krd.entities.enums.OrderStatus;
-import com.krd.repositories.CategoryRespository;
-import com.krd.repositories.OrderRespository;
-import com.krd.repositories.ProductRespository;
-import com.krd.repositories.UserRespository;
+import com.krd.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +27,8 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRespository orderRespository;
 
+    @Autowired
+    private OrderItemRespository orderItemRespository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -65,8 +61,13 @@ public class TestConfig implements CommandLineRunner {
         p3.getCategories().add(cat3);
         p4.getCategories().add(cat3);
         p5.getCategories().add(cat2);
-
         productRespository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+        orderItemRespository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
     }
 
 
