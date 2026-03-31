@@ -1,9 +1,1 @@
-POST http://localhost:8080/users
-Content-Type: application/json
-
-{
-  "name": "Bob Brown",
-  "email": "bob@gmail.com",
-  "phone": "977557755",
-  "password": "123456"
-}
+DELETE http://localhost:8080/users/3
