@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.autoconfigure.JspTemplateAvailabilityProvider;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,9 @@ public class UserService {
     @Autowired
     private UserRespository userRespository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<User> findAll() {
         return userRespository.findAll();
     }
@@ -31,6 +35,7 @@ public class UserService {
     }
 
     public User insert(User obj) {
+        obj.setPassword(passwordEncoder.encode(obj.getPassword()));
         return userRespository.save(obj);
     }
 
