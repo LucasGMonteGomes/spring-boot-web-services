@@ -4,6 +4,8 @@ import com.krd.entities.User;
 import com.krd.repositories.UserRespository;
 import com.krd.services.exception.DatabaseException;
 import com.krd.services.exception.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
+import org.hibernate.proxy.EntityNotFoundDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.autoconfigure.JspTemplateAvailabilityProvider;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -35,18 +37,23 @@ public class UserService {
     public void delete(Long id) {
         try {
             userRespository.deleteById(id);
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
 
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
     }
 
     public User update(Long id, User obj) {
-        User entity = userRespository.getReferenceById(id);
-        updateData(entity, obj);
-        return userRespository.save(entity);
+        try {
+            User entity = userRespository.getReferenceById(id);
+            updateData(entity, obj);
+            return userRespository.save(entity);
+
+        }catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
