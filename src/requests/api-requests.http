@@ -1,8 +1,2 @@
-PUT http://localhost:8080/users/1
+GET http://localhost:8080/users/7
 Content-Type: application/json
-
-{
- "name": "Bob Brown",
- "email": "bob@gmail.com",
- "phone": "977557755"
-}
