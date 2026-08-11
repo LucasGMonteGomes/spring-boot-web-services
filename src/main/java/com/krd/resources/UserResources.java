@@ -2,7 +2,6 @@ package com.krd.resources;
 
 import com.krd.entities.User;
 import com.krd.services.UserService;
-import org.apache.catalina.UserDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
